@@ -9,9 +9,18 @@
 <style>
 :root{--bg:#080b16;--panel:#10172a;--line:rgba(160,177,255,.16);--text:#f4f6ff;--muted:#aab4ce;--blue:#6aa8ff;--purple:#9b85ff;--glow:rgba(112,105,255,.24)}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{margin:0;background-color:#050816;background-image:radial-gradient(ellipse 80% 50% at 20% 15%,rgba(106,168,255,.14),transparent 60%),radial-gradient(ellipse 70% 60% at 85% 30%,rgba(155,133,255,.15),transparent 65%),radial-gradient(ellipse 90% 60% at 50% 85%,rgba(58,86,180,.12),transparent 70%),linear-gradient(180deg,#050816 0%,#080b16 45%,#0c1226 100%);background-attachment:fixed; center top / cover fixed no-repeat,var(--bg);color:var(--text);font-family:Inter,"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7}
+body{margin:0;background-color:#03050a;background-image:
+radial-gradient(ellipse 95% 24% at 50% 44%,rgba(195,212,238,.20) 0%,rgba(128,150,188,.11) 35%,rgba(52,66,96,.04) 65%,transparent 85%),
+radial-gradient(ellipse 65% 14% at 58% 43%,rgba(235,243,255,.22) 0%,rgba(155,178,215,.08) 55%,transparent 85%),
+radial-gradient(ellipse 40% 10% at 28% 46%,rgba(180,200,235,.15) 0%,transparent 75%),
+linear-gradient(180deg,#020308 0%,#060a14 38%,#0c1322 46%,#060912 62%,#020307 100%);
+background-attachment:fixed;color:var(--text);font-family:Inter,"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7}
 
-#starfield{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.82}
+#starfield{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.95}
+#cosmic-horizon{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
+#cosmic-horizon svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+#starfield{opacity:.95}
+
 header,main,footer{position:relative;z-index:1}
 body:after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,transparent 35%,rgba(3,6,16,.34) 100%)}
 
@@ -176,6 +185,79 @@ body.intro-lock{overflow:hidden}
   </div>
 </div>
 
+<div id="cosmic-horizon" aria-hidden="true">
+  <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="mw-core" cx="56%" cy="43%" r="48%">
+        <stop offset="0%" stop-color="#e8f0ff" stop-opacity="0.28"/>
+        <stop offset="30%" stop-color="#9cb4dc" stop-opacity="0.16"/>
+        <stop offset="65%" stop-color="#485d85" stop-opacity="0.06"/>
+        <stop offset="100%" stop-color="#03050a" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="mw-band" x1="0%" y1="48%" x2="100%" y2="40%">
+        <stop offset="0%" stop-color="#6c82aa" stop-opacity="0.05"/>
+        <stop offset="30%" stop-color="#b8cae8" stop-opacity="0.18"/>
+        <stop offset="58%" stop-color="#eef5ff" stop-opacity="0.26"/>
+        <stop offset="82%" stop-color="#9fb4d8" stop-opacity="0.15"/>
+        <stop offset="100%" stop-color="#56698c" stop-opacity="0.04"/>
+      </linearGradient>
+      <linearGradient id="rock-far" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#2b303a"/>
+        <stop offset="45%" stop-color="#171a21"/>
+        <stop offset="100%" stop-color="#07080c"/>
+      </linearGradient>
+      <linearGradient id="rock-near" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#3a404c"/>
+        <stop offset="25%" stop-color="#1b1e26"/>
+        <stop offset="100%" stop-color="#040508"/>
+      </linearGradient>
+      <linearGradient id="probe-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#cfd6e3"/>
+        <stop offset="50%" stop-color="#7c8594"/>
+        <stop offset="100%" stop-color="#2c313b"/>
+      </linearGradient>
+      <filter id="nebula-blur" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur stdDeviation="18"/>
+      </filter>
+    </defs>
+
+    <!-- Milky Way luminous band & dark dust rifts -->
+    <ellipse cx="860" cy="390" rx="860" ry="110" transform="rotate(-4 860 390)" fill="url(#mw-band)" filter="url(#nebula-blur)"/>
+    <ellipse cx="900" cy="385" rx="540" ry="85" transform="rotate(-3 900 385)" fill="url(#mw-core)" filter="url(#nebula-blur)"/>
+    <!-- Dark interstellar dust lane inside the Milky Way -->
+    <path d="M0,415 Q360,375 740,395 T1600,360 L1600,392 Q1150,425 720,412 T0,438 Z" fill="#04060c" opacity="0.52" filter="url(#nebula-blur)"/>
+
+    <!-- Subtle deep-space sampling probe hovering above the asteroid terrain -->
+    <g transform="translate(655, 365) rotate(-14) scale(0.72)" opacity="0.58">
+      <!-- Left solar array -->
+      <polygon points="-135,-36 -38,-18 -44,44 -142,26" fill="#141923" stroke="#8f9bb0" stroke-width="1.5"/>
+      <line x1="-138" y1="-5" x2="-41" y2="13" stroke="#535d70" stroke-width="1"/>
+      <line x1="-88" y1="-27" x2="-94" y2="35" stroke="#535d70" stroke-width="1"/>
+      <!-- Right solar array -->
+      <polygon points="36,-14 115,-2 108,42 32,30" fill="#12161f" stroke="#7d889c" stroke-width="1.4"/>
+      <!-- Spacecraft bus & sample return capsule -->
+      <polygon points="-36,-22 34,-16 30,42 -32,46" fill="url(#probe-metal)" stroke="#aeb8c9" stroke-width="1"/>
+      <polygon points="-16,-38 22,-34 34,-16 -36,-22" fill="#b8c2d4"/>
+      <ellipse cx="0" cy="24" rx="16" ry="12" fill="#dce4f2" stroke="#6c7585" stroke-width="1.5"/>
+      <!-- TAGSAM sampling arm extending toward the asteroid -->
+      <line x1="2" y1="42" x2="14" y2="122" stroke="#9aa5b8" stroke-width="3"/>
+      <circle cx="15" cy="126" r="6" fill="#cfd8e8" stroke="#5a6270" stroke-width="1.5"/>
+    </g>
+
+    <!-- Distant asteroid ridge -->
+    <path d="M0,760 L90,742 L175,710 L245,668 L315,632 L370,646 L435,688 L525,725 L650,748 L810,758 L980,740 L1120,715 L1240,680 L1320,636 L1385,642 L1455,672 L1535,665 L1600,685 L1600,900 L0,900 Z" fill="url(#rock-far)" opacity="0.9"/>
+
+    <!-- Foreground rugged rocky asteroid horizon with sunlit rim highlights -->
+    <path d="M0,785 L65,768 L130,745 L195,705 L255,650 L295,622 L332,638 L368,628 L412,676 L468,712 L540,742 L635,764 L745,776 L870,768 L995,750 L1110,730 L1215,695 L1285,652 L1328,618 L1365,634 L1412,625 L1462,664 L1520,656 L1600,678 L1600,900 L0,900 Z" fill="url(#rock-near)"/>
+    <!-- Rim light along the jagged rocks -->
+    <path d="M0,785 L65,768 L130,745 L195,705 L255,650 L295,622 L332,638 L368,628 L412,676 L468,712 L540,742 L635,764 L745,776 L870,768 L995,750 L1110,730 L1215,695 L1285,652 L1328,618 L1365,634 L1412,625 L1462,664 L1520,656 L1600,678" fill="none" stroke="rgba(195,210,235,0.28)" stroke-width="1.6"/>
+    <!-- Boulder & crater texture accents -->
+    <polygon points="265,675 305,648 345,672 325,705 275,700" fill="#2c313c" opacity="0.65"/>
+    <polygon points="1295,672 1338,642 1380,668 1362,704 1308,698" fill="#2c313c" opacity="0.65"/>
+    <polygon points="480,752 525,738 565,756 535,775 490,770" fill="#252933" opacity="0.6"/>
+    <polygon points="1030,762 1085,745 1130,765 1095,785 1045,780" fill="#252933" opacity="0.6"/>
+  </svg>
+</div>
 <canvas id="starfield" aria-hidden="true"></canvas>
 <div id="cursor-trail" aria-hidden="true"></div>
 <header><div class="wrap"><nav>
@@ -260,8 +342,10 @@ function updateScrollEffects(){
   const progress=maxScroll>0?Math.min(1,window.scrollY/maxScroll):0;
   if(progressBar)progressBar.style.width=(progress*100)+'%';
   if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    const offset=window.scrollY*.16;
+    const offset=window.scrollY*.12;
     document.body.style.backgroundPosition=`center ${-offset}px`;
+    const hz=document.getElementById('cosmic-horizon');
+    if(hz)hz.style.transform=`translateY(${-window.scrollY*.04}px)`;
   }
   scrollTicking=false;
 }
@@ -305,8 +389,16 @@ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function resize(){
   const dpr=Math.min(window.devicePixelRatio||1,2);w=window.innerWidth;h=window.innerHeight;
   canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
-  const count=Math.min(58,Math.floor(w*h/23000));
-  stars=Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,r:.35+Math.random()*1.15,a:.2+Math.random()*.65,phase:Math.random()*Math.PI*2,speed:.004+Math.random()*.012}));
+  const count=Math.min(110,Math.floor(w*h/12000));
+  const fieldStars=Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h*.82,r:.35+Math.random()*1.25,a:.25+Math.random()*.7,phase:Math.random()*Math.PI*2,speed:.004+Math.random()*.012}));
+  const bandCount=Math.min(180,Math.floor(w/7));
+  const mwStars=Array.from({length:bandCount},()=>{
+    const rx=Math.random();
+    const centerY=h*(0.46 - rx*0.06);
+    const spread=(Math.random()+Math.random()-1)*h*0.09;
+    return {x:rx*w,y:centerY+spread,r:.25+Math.random()*.85,a:.18+Math.random()*.65,phase:Math.random()*Math.PI*2,speed:.003+Math.random()*.01};
+  });
+  stars=[...fieldStars,...mwStars];
 }
 function draw(){
   ctx.clearRect(0,0,w,h);
